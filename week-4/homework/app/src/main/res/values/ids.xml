@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">GPA_[your_netid]_Calculator</string>
+    <string name="course_1_grade">Course 1 Grade</string>
+    <string name="course_2_grade">Course 2 Grade</string>
+    <string name="course_3_grade">Course 3 Grade</string>
+    <string name="course_4_grade">Course 4 Grade</string>
+    <string name="course_5_grade">Course 5 Grade</string>
+    <string name="compute_gpa">Compute GPA</string>
+    <string name="clear_form">Clear Form</string>
+    <string name="gpa_result">GPA: %.2f</string>
+</resources>
