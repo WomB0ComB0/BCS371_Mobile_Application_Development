@@ -66,38 +66,134 @@ fun BasicOperations(name: String, modifier: Modifier = Modifier) {
         }
         HorizontalDivider(thickness = DividerDefaults.Thickness)
 
-        Button( onClick = {
+        Button(onClick = {
             val newInt = Intent(Intent.ACTION_VIEW)
-            // ToDo 1: create implicit intent to open a web page or call a phone number
+            newInt.data = Uri.parse("tel:+15165551234")
             context.startActivity(newInt)
         },
-            modifier= Modifier.padding(start = 40.dp, end = 40.dp)) {
-            Icon( imageVector = Icons.Default.Phone, contentDescription = "Phone")
+            modifier = Modifier.padding(start = 40.dp, end = 40.dp)) {
+            Icon(imageVector = Icons.Default.Phone, contentDescription = "Phone")
             Text("Call Me")
         }
 
         HorizontalDivider(thickness = DividerDefaults.Thickness)
 
-        Button( onClick = {
-            // ToDo 2: create explicit intent to open a new activity
-            context.startActivity(Intent(context, MainActivity::class.java))
+        Button(onClick = {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
         },
-            modifier= Modifier.padding(start = 40.dp, end = 40.dp)) {
-            Icon( imageVector = Icons.Default.Info, contentDescription = "Phone")
+            modifier = Modifier.padding(start = 40.dp, end = 40.dp)) {
+            Icon(imageVector = Icons.Default.Info, contentDescription = "Info")
             Text("Go To activity 2")
         }
 
-        // ToDo 3: Change the spacing between the icons and text to be 10dp
-        // ToDo 4: Add a horizontal divider between the buttons
+        Button(onClick = {
+            val newInt = Intent(Intent.ACTION_VIEW)
+            newInt.data = Uri.parse("geo:0,0?q=Farmingdale State College, NY")
+            context.startActivity(newInt)
+        },
+            modifier = Modifier.padding(start = 40.dp, end = 40.dp)) {
+            Icon(
+                imageVector = Icons.Default.LocationOn,
+                contentDescription = "Location",
+                modifier = Modifier.padding(end = 10.dp)
+            )
+            Text("Show me Farmingdale")
+        }
+        
+        HorizontalDivider(thickness = DividerDefaults.Thickness)
+        
+        Button(onClick = {
+            val newInt = Intent(Intent.ACTION_VIEW)
+            newInt.data = Uri.parse("tel:+15165551234")
+            context.startActivity(newInt)
+        },
+            modifier = Modifier.padding(start = 40.dp, end = 40.dp)) {
+            Icon(
+                imageVector = Icons.Default.Phone,
+                contentDescription = "Phone",
+                modifier = Modifier.padding(end = 10.dp)
+            )
+            Text("Call Me")
+        }
+        
+        HorizontalDivider(thickness = DividerDefaults.Thickness)
+        
+        Button(onClick = {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
+        },
+            modifier = Modifier.padding(start = 40.dp, end = 40.dp)) {
+            Icon(
+                imageVector = Icons.Default.Info,
+                contentDescription = "Info",
+                modifier = Modifier.padding(end = 10.dp)
+            )
+            Text("Go To activity 2")
+        }
 
 
-        // ToDo 5: This switch is not working fix it
+        var switchState by remember { mutableStateOf(true) }
+        
         Switch(
-            checked = true,
-            onCheckedChange = {  },
+            checked = switchState,
+            onCheckedChange = { switchState = it },
             modifier = Modifier.padding(10.dp),
         )
-        // ToDo 6: when the switch is off, disable the buttons
+        
+        Button(
+            onClick = {
+                val newInt = Intent(Intent.ACTION_VIEW)
+                newInt.data = Uri.parse("geo:0,0?q=Farmingdale State College, NY")
+                context.startActivity(newInt)
+            },
+            modifier = Modifier.padding(start = 40.dp, end = 40.dp),
+            enabled = switchState
+        ) {
+            Icon(
+                imageVector = Icons.Default.LocationOn,
+                contentDescription = "Location",
+                modifier = Modifier.padding(end = 10.dp)
+            )
+            Text("Show me Farmingdale")
+        }
+        
+        HorizontalDivider(thickness = DividerDefaults.Thickness)
+        
+        Button(
+            onClick = {
+                val newInt = Intent(Intent.ACTION_VIEW)
+                newInt.data = Uri.parse("tel:+15165551234")
+                context.startActivity(newInt)
+            },
+            modifier = Modifier.padding(start = 40.dp, end = 40.dp),
+            enabled = switchState
+        ) {
+            Icon(
+                imageVector = Icons.Default.Phone,
+                contentDescription = "Phone",
+                modifier = Modifier.padding(end = 10.dp)
+            )
+            Text("Call Me")
+        }
+        
+        HorizontalDivider(thickness = DividerDefaults.Thickness)
+        
+        Button(
+            onClick = {
+                val intent = Intent(context, MainActivity::class.java)
+                context.startActivity(intent)
+            },
+            modifier = Modifier.padding(start = 40.dp, end = 40.dp),
+            enabled = switchState
+        ) {
+            Icon(
+                imageVector = Icons.Default.Info,
+                contentDescription = "Info",
+                modifier = Modifier.padding(end = 10.dp)
+            )
+            Text("Go To activity 2")
+        }
     }
 
 

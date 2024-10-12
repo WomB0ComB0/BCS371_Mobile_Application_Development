@@ -43,30 +43,28 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun Navigation() {
-    val navController= rememberNavController()
-    NavHost(navController = navController, startDestination = "splash_screen"  ){
-        composable("splash_screen"
-        ) {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "splash_screen") {
+        composable("splash_screen") {
             SpalshScreen(navController)
-
         }
 
-        composable("first_screen"
-        ) {
+        composable("first_screen") {
             FirstScreen(navController)
-
         }
-
 
         composable("second_screen") {
             SecondScreen(navController)
         }
 
-        // ToDo 7: Add more nav screens here for the pizza party and gpa calculator
+        composable("pizza_party_screen") {
+            PizzaPartyScreen(navController = navController)
+        }
 
-
+        composable("gpa_calculator_screen") {
+            gpaappFun(navController = navController)
+        }
     }
-
 }
 
 @Composable
@@ -91,24 +89,33 @@ fun FirstScreen(navController: NavController) {
 @Composable
 fun SecondScreen(navController: NavController) {
     var sliderValue by remember { mutableStateOf(0.5f) }
+    var switchState by remember { mutableStateOf(true) }
 
     val context = LocalContext.current
-    Column ( modifier = Modifier.padding(horizontal = 20.dp),
+    Column(
+        modifier = Modifier.padding(horizontal = 20.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally){
-        Slider(value = sliderValue, onValueChange = { sliderValue=it }, Modifier.fillMaxWidth())
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Slider(
+            value = sliderValue,
+            onValueChange = { if (switchState) sliderValue = it },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = switchState
+        )
 
-        Text (fontSize = 20.sp, text = "Second Screen")
+        Text(fontSize = 20.sp, text = "Second Screen")
 
         Button(onClick = { context.startActivity(Intent(context, MainActivity2::class.java)) }) {
-            Text(fontSize = 20.sp, text ="Go to other Activity")
+            Text(fontSize = 20.sp, text = "Go to other Activity")
         }
 
-        // ToDo 8: when the switch is off, disable the slider
-        Checkbox(checked = true, onCheckedChange = {  }, modifier = Modifier.padding(10.dp))
-
+        Switch(
+            checked = switchState,
+            onCheckedChange = { switchState = it },
+            modifier = Modifier.padding(10.dp)
+        )
     }
-
 }
 
 @Composable
