@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 // ToDo 4: Match the UI as in drawable gpa_design.png. Use the following hints:
 // - The background color should be Color.Cyan
